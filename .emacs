@@ -30,7 +30,7 @@
                (menu-bar-lines . 1)
                (right-fringe)
                (left-fringe)))
-(setq initial-frame-alist '((top . 0) (left . 0) (width . 143) (height . 55)))
+(setq initial-frame-alist '((top . 0) (left . 0) (width . 170) (height . 60)))
 (set-face-foreground 'highlight "white")
 (set-face-background 'highlight "blue")
 (set-face-foreground 'region "cyan")
@@ -80,3 +80,28 @@
 (set-face-foreground 'diary-face "skyblue")
 (set-face-background 'holiday-face "slate blue")
 (set-face-foreground 'holiday-face "white")))
+(defun my-c-mode-auto-pair ()
+  (interactive)
+  (make-local-variable 'skeleton-pair-alist)
+  (setq skeleton-pair-alist '(
+    (?` ?` _ "''")
+    (?\( ? _ " )")
+    (?\[ ? _ " ]")
+    (?{ \n > _ \n ?} >)))
+  (setq skeleton-pair t)
+  (local-set-key (kbd "(") 'skeleton-pair-insert-maybe)
+  (local-set-key (kbd "{") 'skeleton-pair-insert-maybe)
+  (local-set-key (kbd "`") 'skeleton-pair-insert-maybe)
+  (local-set-key (kbd "[") 'skeleton-pair-insert-maybe))
+(add-hook 'c-mode-hook 'my-c-mode-auto-pair)
+(add-hook 'c++-mode-hook 'my-c-mode-auto-pair)
+(setq auto-mode-alist
+      ;; 将文件模式和文件后缀关联起来
+      (append '(("\\.py\\'" . python-mode)
+                ("\\.s?html?\\'" . html-helper-mode)
+                ("\\.asp\\'" . html-helper-mode)
+                ("\\.phtml\\'" . html-helper-mode)
+                ("\\.css\\'" . css-mode))
+              auto-mode-alist))
+
+
