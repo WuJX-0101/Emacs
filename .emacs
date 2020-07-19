@@ -103,5 +103,11 @@
                 ("\\.phtml\\'" . html-helper-mode)
                 ("\\.css\\'" . css-mode))
               auto-mode-alist))
-
-
+(show-paren-mode t)
+(setq show-paren-style 'parenthesis)
+(setq frame-title-format "emacs@%b")
+(setq speedbar-show-unknown-files t);;可以显示所有目录以及文件
+(setq time-stamp-active t)
+(setq time-stamp-warn-inactive t)
+(setq time-stamp-format "%:y-%02m-%02d %3a %02H:%02M:%02S chunyu")
+;; 设置时间戳，标识出最后一次保存文件的时间。
